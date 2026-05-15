@@ -11,6 +11,13 @@ export default defineConfig(() => ({
       overlay: false,
     },
   },
+  preview: {
+    allowedHosts: [
+      "localhost",
+      "127.0.0.1",
+      "nexaflowwebclient-production.up.railway.app",
+    ],
+  },
   plugins: [react()],
   resolve: {
     alias: {
