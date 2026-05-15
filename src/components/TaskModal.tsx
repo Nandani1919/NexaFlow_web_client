@@ -51,7 +51,10 @@ export function TaskModal({ open, onOpenChange, projectId, task, defaultStatus =
       status, priority, assigneeId: assigneeId || undefined,
       dueDate: dueDate ? new Date(dueDate).toISOString() : undefined,
     };
-    if (isEdit && task) { updateTask(task.id, payload); toast.success("Task updated"); }
+    if (isEdit && task) {
+      updateTask(task.id, isAdmin ? payload : { status });
+      toast.success("Task updated");
+    }
     else { createTask(payload); toast.success("Task created"); }
     onOpenChange(false);
   };

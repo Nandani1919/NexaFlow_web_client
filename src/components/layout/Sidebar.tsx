@@ -42,7 +42,7 @@ export function Sidebar({ collapsed, setCollapsed, mobile, onClose }: {
           <BrandMark className="h-9 w-9" />
           {(!collapsed || mobile) && (
             <div className="min-w-0">
-              <div className="font-display font-bold text-base leading-none tracking-tight">ORBIT</div>
+              <div className="font-display font-bold text-base leading-none tracking-tight">NexaFlow</div>
               <div className="text-[10px] text-muted-foreground mt-1 uppercase tracking-[0.18em]">Workspace</div>
             </div>
           )}

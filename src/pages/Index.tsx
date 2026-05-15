@@ -72,7 +72,7 @@ function IntroCurtain() {
           >
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-gradient-aurora shadow-glow animate-glow-pulse" />
-              <span className="font-display font-bold tracking-tight text-2xl gradient-text">ORBIT</span>
+              <span className="font-display font-bold tracking-tight text-2xl gradient-text">NexaFlow</span>
             </div>
           </motion.div>
         </motion.div>
@@ -95,7 +95,7 @@ export default function Index() {
       <IntroCurtain />
       {/* Ambient background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(168_94%_72%/0.18),transparent_36%),linear-gradient(180deg,hsl(180_12%_5%),hsl(210_14%_4%))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(188_88%_68%/0.16),transparent_36%),linear-gradient(180deg,hsl(190_16%_5%),hsl(210_14%_4%))]" />
         <div className="absolute inset-0 circuit-bg opacity-45" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       </div>
@@ -119,11 +119,11 @@ function Navbar() {
     <header className="sticky top-0 z-50 px-4 pt-5">
       <motion.div
         initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-        className="mx-auto max-w-4xl flex items-center justify-between rounded-full orbit-nav px-4 py-2.5"
+        className="mx-auto max-w-4xl flex items-center justify-between rounded-full nexaflow-nav px-4 py-2.5"
       >
         <Link to="/" className="flex items-center gap-2.5 px-2">
           <BrandMark className="h-8 w-8 rounded-lg" />
-          <span className="font-display font-bold tracking-tight text-lg">ORBIT</span>
+          <span className="font-display font-bold tracking-tight text-lg">NexaFlow</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 text-sm text-muted-foreground">
@@ -155,15 +155,15 @@ function Navbar() {
 function Hero({ email, setEmail, onSubmit }: { email: string; setEmail: (s: string) => void; onSubmit: (e: React.FormEvent) => void }) {
   return (
     <section className="relative min-h-[calc(100vh-5rem)] px-6 pt-16 pb-20 overflow-hidden">
-      <OrbitalDecor />
+      <FlowDecor />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 orbit-pill rounded-full px-4 py-1.5 text-xs text-primary mb-8"
+          className="inline-flex items-center gap-2 nexaflow-pill rounded-full px-4 py-1.5 text-xs text-primary mb-8"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-glow-pulse" />
-          New · Real-time team collaboration is here
+          New - Delivery planning now feels calmer
           <ArrowRight className="h-3 w-3" />
         </motion.div>
 
@@ -172,22 +172,22 @@ function Hero({ email, setEmail, onSubmit }: { email: string; setEmail: (s: stri
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
           className="font-display text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
         >
-          <span className="gradient-text">Manage Projects, Teams,</span>
+          <span className="gradient-text">Plan Sprints, Align Teams,</span>
           <br />
-          <RevealWords text="and Tasks in One Workspace" gradient />
+          <RevealWords text="and Track Delivery in One Flow" gradient />
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base md:text-lg text-muted-foreground mt-7 max-w-2xl mx-auto leading-7"
         >
-          Create projects, assign tasks, track progress, and keep your team aligned with a beautifully organized, futuristic dashboard.
+          NexaFlow brings roadmaps, tasks, owners, comments, and delivery signals into a focused workspace built for teams that move quickly.
         </motion.p>
 
         <motion.form
           onSubmit={onSubmit}
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-10 max-w-md mx-auto flex items-center gap-2 orbit-input rounded-full p-1.5 pl-5"
+          className="mt-10 max-w-md mx-auto flex items-center gap-2 nexaflow-input rounded-full p-1.5 pl-5"
         >
           <Input
             value={email} onChange={(e) => setEmail(e.target.value)}
@@ -212,20 +212,20 @@ function Hero({ email, setEmail, onSubmit }: { email: string; setEmail: (s: stri
   );
 }
 
-function OrbitalDecor() {
+function FlowDecor() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -90, scale: 0.94 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.32, 0.72, 0, 1] }}
-        className="absolute left-1/2 top-[-30rem] h-[38rem] w-[62rem] -translate-x-1/2 rounded-[50%] border border-primary/35 bg-[radial-gradient(ellipse_at_center,hsl(168_94%_72%/0.38),hsl(168_94%_72%/0.08)_42%,transparent_68%)] blur-[0.2px] orbit-arc-top"
+        className="absolute left-1/2 top-[-30rem] h-[38rem] w-[62rem] -translate-x-1/2 rounded-[50%] border border-primary/35 bg-[radial-gradient(ellipse_at_center,hsl(188_88%_68%/0.34),hsl(166_74%_50%/0.08)_42%,transparent_68%)] blur-[0.2px] nexaflow-arc-top"
       />
       <motion.div
         initial={{ opacity: 0, y: 80, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.2, delay: 0.12, ease: [0.32, 0.72, 0, 1] }}
-        className="absolute left-1/2 top-[20rem] h-[34rem] w-[58rem] -translate-x-1/2 rounded-[50%] border border-primary/30 bg-[radial-gradient(ellipse_at_top,hsl(168_94%_72%/0.46),hsl(180_80%_38%/0.18)_38%,transparent_64%)] orbit-arc-bottom"
+        className="absolute left-1/2 top-[20rem] h-[34rem] w-[58rem] -translate-x-1/2 rounded-[50%] border border-primary/30 bg-[radial-gradient(ellipse_at_top,hsl(188_88%_68%/0.4),hsl(166_74%_42%/0.18)_38%,transparent_64%)] nexaflow-arc-bottom"
       />
       <div className="absolute left-[11%] top-24 hidden h-56 w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent md:block" />
       <div className="absolute right-[11%] top-32 hidden h-64 w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent md:block" />
@@ -382,7 +382,7 @@ function LogoCloud() {
   const logos = ["NORTHWIND", "ACME", "LUMEN", "PIXELFORGE", "HALCYON", "VECTRA"];
   return (
     <section className="px-6 py-10">
-      <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">Trusted by ambitious teams worldwide</p>
+      <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">Built for product, engineering, and operations teams</p>
       <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-60">
         {logos.map((l) => (
           <span key={l} className="font-display font-bold text-sm tracking-[0.2em] text-muted-foreground">{l}</span>
@@ -395,20 +395,20 @@ function LogoCloud() {
 /* ---------------- Features ---------------- */
 function Features() {
   const items = [
-    { icon: FolderKanban, title: "Beautiful Kanban", desc: "Drag-and-drop boards that make sprint planning feel effortless and fast." },
-    { icon: ListChecks, title: "Smart Tasks", desc: "Priorities, deadlines, assignees, and dependencies — all elegantly organized." },
-    { icon: Users, title: "Team Roles", desc: "Granular Admin and Member roles with permissions that scale with your team." },
-    { icon: BarChart3, title: "Live Reports", desc: "Productivity charts, burndown, and progress rings — auto-updated in real time." },
-    { icon: Calendar, title: "Deadline Sync", desc: "Calendar view with overdue alerts so nothing important slips through." },
-    { icon: Shield, title: "Secure by Default", desc: "Enterprise-grade authentication and role-based access for peace of mind." },
+    { icon: FolderKanban, title: "Flow Boards", desc: "Move work from backlog to done with clear ownership and status lanes." },
+    { icon: ListChecks, title: "Focused Tasks", desc: "Priorities, due dates, assignees, and comments stay connected to the project plan." },
+    { icon: Users, title: "Team Permissions", desc: "Admin and member roles keep collaboration open while protecting critical actions." },
+    { icon: BarChart3, title: "Delivery Reports", desc: "Progress, completion trends, workload, and activity give leads a quick read on health." },
+    { icon: Calendar, title: "Deadline Radar", desc: "Calendar planning and overdue alerts make upcoming commitments easier to manage." },
+    { icon: Shield, title: "Secure Sessions", desc: "JWT auth is stored in HttpOnly cookies with protected routes across the API." },
   ];
   return (
     <section id="features" className="px-6 py-28 relative">
       <div className="max-w-6xl mx-auto">
         <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex glass-pill rounded-full px-3 py-1 text-[11px] text-muted-foreground mb-4">FEATURES</div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">Everything your team needs to ship</h2>
-          <p className="text-muted-foreground mt-4">A complete toolkit for planning, executing, and tracking every project — without the chaos.</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">One operating layer for delivery</h2>
+          <p className="text-muted-foreground mt-4">Plan, execute, and review project work without scattering context across disconnected tools.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -439,8 +439,8 @@ function DashboardPreview() {
       <div className="max-w-6xl mx-auto">
         <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex glass-pill rounded-full px-3 py-1 text-[11px] text-muted-foreground mb-4">DASHBOARD</div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">A workspace as ambitious as your team</h2>
-          <p className="text-muted-foreground mt-4">Get a complete view of projects, tasks, and team activity in one elegant dashboard.</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">A control room for active work</h2>
+          <p className="text-muted-foreground mt-4">See project health, open work, team updates, and delivery momentum from one dashboard.</p>
         </motion.div>
 
         <motion.div
@@ -455,7 +455,7 @@ function DashboardPreview() {
               <span className="h-2.5 w-2.5 rounded-full bg-rose-500/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
-              <span className="ml-3 text-[11px] text-muted-foreground">orbit.app/dashboard</span>
+              <span className="ml-3 text-[11px] text-muted-foreground">nexaflow.app/dashboard</span>
             </div>
 
             <div className="grid grid-cols-12 gap-4">
@@ -471,7 +471,7 @@ function DashboardPreview() {
                 {/* stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
-                    { l: "Active Projects", v: "24", c: "from-violet-500 to-fuchsia-500" },
+                    { l: "Active Projects", v: "24", c: "from-cyan-500 to-teal-400" },
                     { l: "Tasks Open", v: "138", c: "from-sky-500 to-cyan-400" },
                     { l: "Completed", v: "412", c: "from-emerald-500 to-teal-400" },
                     { l: "Overdue", v: "3", c: "from-rose-500 to-pink-500" },
@@ -531,7 +531,7 @@ function Pricing() {
         <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex glass-pill rounded-full px-3 py-1 text-[11px] text-muted-foreground mb-4">PRICING</div>
           <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">Simple, transparent pricing</h2>
-          <p className="text-muted-foreground mt-4">Start free. Upgrade when your team is ready to fly.</p>
+          <p className="text-muted-foreground mt-4">Start free. Upgrade when your team needs more workspace power.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -581,8 +581,8 @@ function CTA({ email, setEmail, onSubmit }: { email: string; setEmail: (s: strin
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[600px] rounded-full bg-gradient-aurora opacity-30 blur-3xl" />
         </div>
         <Zap className="h-7 w-7 mx-auto text-accent mb-4" />
-        <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">Ready to ship faster?</h2>
-        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Join thousands of teams using Orbit to organize work and accelerate delivery.</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text">Ready to bring work into flow?</h2>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Use NexaFlow to organize projects, make ownership visible, and keep delivery moving.</p>
         <form onSubmit={onSubmit} className="mt-8 max-w-md mx-auto flex items-center gap-2 glass rounded-full p-1.5 pl-5">
           <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com"
             className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-sm h-10 px-0 placeholder:text-muted-foreground/70" />
@@ -600,8 +600,8 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <BrandMark className="h-7 w-7 rounded-lg" />
-          <span className="font-display font-bold tracking-tight">ORBIT</span>
-          <span className="text-xs text-muted-foreground ml-2">© 2026 Orbit Labs · Built for productive teams</span>
+          <span className="font-display font-bold tracking-tight">NexaFlow</span>
+          <span className="text-xs text-muted-foreground ml-2">Copyright 2026 NexaFlow Labs - Built for productive teams</span>
         </div>
         <div className="flex items-center gap-5 text-xs text-muted-foreground">
           <a href="#features" className="hover:text-foreground transition-colors">Features</a>

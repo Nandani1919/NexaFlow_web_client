@@ -53,7 +53,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
-    return (localStorage.getItem("orbit:theme") as "light" | "dark" | null) || "dark";
+    return (localStorage.getItem("nexaflow:theme") as "light" | "dark" | null) || "dark";
   });
 
   const applyWorkspace = useCallback((workspace: WorkspaceResponse) => {
@@ -72,19 +72,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("orbit:theme", theme);
+    localStorage.setItem("nexaflow:theme", theme);
   }, [theme]);
 
   useEffect(() => {
     let cancelled = false;
     async function bootstrap() {
       try {
-        const [{ user }, workspace] = await Promise.all([
-          apiRequest<{ user: User }>("/auth/me"),
-          apiRequest<WorkspaceResponse>("/workspace"),
-        ]);
+        const { user } = await apiRequest<{ user: User }>("/auth/me");
         if (cancelled) return;
         setCurrentUser(user);
+
+        const workspace = await apiRequest<WorkspaceResponse>("/workspace");
+        if (cancelled) return;
         applyWorkspace(workspace);
       } catch {
         if (!cancelled) {

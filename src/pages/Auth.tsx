@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { Github, Mail, Loader2, CheckCircle2, ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Loader2, ShieldCheck, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,10 +47,10 @@ function AuthShell({ children, side }: { children: ReactNode; side: ReactNode })
         <div className="relative z-10 flex flex-col justify-between p-12 text-white w-full">
           <Link to="/" className="flex items-center gap-2.5 w-fit">
             <BrandMark className="h-10 w-10" />
-            <span className="font-display font-bold text-xl tracking-tight">ORBIT</span>
+            <span className="font-display font-bold text-xl tracking-tight">NexaFlow</span>
           </Link>
           {side}
-          <div className="text-xs text-white/60">© 2026 Orbit Labs · Crafted for productive teams</div>
+          <div className="text-xs text-white/60">Copyright 2026 NexaFlow Labs - Crafted for productive teams</div>
         </div>
       </div>
     </div>
@@ -60,11 +60,25 @@ function AuthShell({ children, side }: { children: ReactNode; side: ReactNode })
 export function Login() {
   const navigate = useNavigate();
   const { login } = useApp();
-  const [email, setEmail] = useState("alex@orbit.app");
+  const [email, setEmail] = useState("alex@nexaflow.app");
   const [password, setPassword] = useState("demo1234");
   const [role, setRole] = useState<Role>("admin");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const loginAsDemo = async (nextRole: Role) => {
+    setLoading(true);
+    try {
+      const nextEmail = nextRole === "admin" ? "alex@nexaflow.app" : "jamie@nexaflow.app";
+      await login(nextEmail, "demo1234", nextRole);
+      toast.success(`Signed in as ${nextRole}`);
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Sign in failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,7 +108,7 @@ export function Login() {
         <div className="space-y-6 max-w-md">
           <div>
             <h2 className="font-display text-4xl font-bold leading-tight mb-3">Where teams ship faster, together.</h2>
-            <p className="text-white/80">Orbit brings projects, tasks, and conversations into one elegant home.</p>
+            <p className="text-white/80">NexaFlow brings projects, tasks, and conversations into one focused operating layer.</p>
           </div>
           <ul className="space-y-2.5">
             {["Beautiful kanban boards", "Real-time team collaboration", "Smart deadlines & priorities", "Insightful analytics"].map((f) => (
@@ -108,17 +122,17 @@ export function Login() {
     >
       <div className="mb-7 lg:hidden flex items-center gap-2">
         <BrandMark className="h-10 w-10" />
-        <span className="font-display font-bold text-xl tracking-tight">ORBIT</span>
+        <span className="font-display font-bold text-xl tracking-tight">NexaFlow</span>
       </div>
       <h1 className="font-display text-3xl font-bold mb-2 gradient-text">Welcome back</h1>
       <p className="text-muted-foreground mb-7 text-sm">Sign in to continue to your workspace.</p>
 
       <div className="grid grid-cols-2 gap-3 mb-5">
-        <Button variant="outline" className="rounded-full h-11 bg-white/5 border-white/10 hover:bg-white/10" onClick={async () => { await login("alex@orbit.app", "demo1234", "admin"); navigate("/dashboard"); }}>
-          <Github className="h-4 w-4 mr-2" /> GitHub
+        <Button variant="outline" disabled={loading} className="rounded-full h-11 bg-white/5 border-white/10 hover:bg-white/10" onClick={() => loginAsDemo("admin")}>
+          <ShieldCheck className="h-4 w-4 mr-2" /> Admin demo
         </Button>
-        <Button variant="outline" className="rounded-full h-11 bg-white/5 border-white/10 hover:bg-white/10" onClick={async () => { await login("alex@orbit.app", "demo1234", "admin"); navigate("/dashboard"); }}>
-          <Mail className="h-4 w-4 mr-2" /> Google
+        <Button variant="outline" disabled={loading} className="rounded-full h-11 bg-white/5 border-white/10 hover:bg-white/10" onClick={() => loginAsDemo("member")}>
+          <UserRound className="h-4 w-4 mr-2" /> Member demo
         </Button>
       </div>
 
@@ -142,7 +156,11 @@ export function Login() {
           <Label>Demo role</Label>
           <div className="grid grid-cols-2 gap-2">
             {(["admin", "member"] as const).map((r) => (
-              <button key={r} type="button" onClick={() => setRole(r)}
+              <button key={r} type="button" onClick={() => {
+                setRole(r);
+                setEmail(r === "admin" ? "alex@nexaflow.app" : "jamie@nexaflow.app");
+                setPassword("demo1234");
+              }}
                 className={`h-10 rounded-full border text-sm font-medium capitalize transition-all ${role === r ? "border-primary/60 bg-primary/15 text-foreground shadow-sm" : "border-white/10 bg-white/5 text-muted-foreground hover:bg-white/10"}`}>
                 {r}
               </button>
@@ -155,7 +173,7 @@ export function Login() {
       </form>
 
       <p className="text-sm text-muted-foreground mt-6 text-center">
-        New to Orbit? <Link to="/signup" className="text-foreground font-medium hover:underline">Create an account</Link>
+        New to NexaFlow? <Link to="/signup" className="text-foreground font-medium hover:underline">Create an account</Link>
       </p>
     </AuthShell>
   );
@@ -183,7 +201,7 @@ export function Signup() {
     setErrors({});
     setLoading(true);
     try {
-      await signup(name, email, password, role);
+      await signup(name, email, password, "member");
       toast.success("Account created - welcome!");
       navigate("/dashboard");
     } catch (error) {
@@ -204,7 +222,7 @@ export function Signup() {
     >
       <div className="mb-7 lg:hidden flex items-center gap-2">
         <BrandMark className="h-10 w-10" />
-        <span className="font-display font-bold text-xl tracking-tight">ORBIT</span>
+        <span className="font-display font-bold text-xl tracking-tight">NexaFlow</span>
       </div>
       <h1 className="font-display text-3xl font-bold mb-2 gradient-text">Create your workspace</h1>
       <p className="text-muted-foreground mb-7 text-sm">Free for up to 5 teammates. Upgrade anytime.</p>
@@ -224,17 +242,6 @@ export function Signup() {
           <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 6 characters" className="h-11 rounded-full bg-white/5 border-white/10 px-5" />
           {errors.password && <p className="text-xs text-destructive">{errors.password}</p>}
-        </div>
-        <div className="space-y-1.5">
-          <Label>Your role</Label>
-          <div className="grid grid-cols-2 gap-2">
-            {(["admin", "member"] as const).map((r) => (
-              <button key={r} type="button" onClick={() => setRole(r)}
-                className={`h-10 rounded-full border text-sm font-medium capitalize transition-all ${role === r ? "border-primary/60 bg-primary/15 text-foreground shadow-sm" : "border-white/10 bg-white/5 text-muted-foreground hover:bg-white/10"}`}>
-                {r}
-              </button>
-            ))}
-          </div>
         </div>
         <Button type="submit" disabled={loading} className="w-full h-11 rounded-full bg-white text-black hover:bg-white/90 font-medium">
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Create account"}
