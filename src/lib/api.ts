@@ -4,7 +4,10 @@ if (!apiBaseUrl) {
   throw new Error("Missing VITE_API_URL. Add it to harmony-workspace/.env");
 }
 
-const API_URL = apiBaseUrl.replace(/\/$/, "");
+const normalizedApiBaseUrl = apiBaseUrl.replace(/\/$/, "");
+const API_URL = normalizedApiBaseUrl.endsWith("/api")
+  ? normalizedApiBaseUrl
+  : `${normalizedApiBaseUrl}/api`;
 
 export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const headers = new Headers(options.headers);

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NexaFlow">
+  <rect width="64" height="64" rx="14" fill="#07111f"/>
+  <path d="M17 44V20h7.5l15 15.9V20H47v24h-7.5l-15-15.9V44H17Z" fill="#22d3ee"/>
+  <path d="M18 48h28" stroke="#a3e635" stroke-width="5" stroke-linecap="round"/>
+</svg>
